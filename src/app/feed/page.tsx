@@ -139,7 +139,7 @@ export default function FeedPage() {
     try {
       setIsSubmitting(true);
       const formData = new FormData();
-      formData.append("_id", user._id);
+      formData.append("_id", String(user._id));
       formData.append("content", newPost.content);
       if (newPost.image) {
         formData.append("image", newPost.image);

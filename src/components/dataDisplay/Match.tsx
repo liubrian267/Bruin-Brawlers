@@ -6,7 +6,7 @@ import Image from "next/image";
 import { ModeImageMap } from "@/utils/modeImages";
 export default function Match({ game }: { game: Game }) {
   const result = game.battle?.result || "unknown";
-  console.log(game, "from match component");
+  //console.log(game, "from match component");
   const resultClass =
     result === "victory"
       ? "text-green-500 dark:text-green-400"

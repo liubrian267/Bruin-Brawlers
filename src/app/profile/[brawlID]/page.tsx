@@ -3,7 +3,7 @@ import BrawlerList from "@/components/dataDisplay/BrawlerList";
 import MatchList from "@/components/dataDisplay/MatchList";
 import ProfileData from "@/components/dataDisplay/ProfileData";
 import { updateMatchHistory } from "../action";
-
+import { headers } from "next/headers";
 const API_KEY = process.env.BS_API_KEY as string;
 const URL = "https://api.brawlstars.com/v1";
 
@@ -15,11 +15,42 @@ interface brawler {
   trophies: number;
 }
 
+function extractBrawlIDFromUrl(url: string): string | null {
+  try {
+    const { pathname } = new globalThis.URL(url);
+    // Remove empty segments (in case of leading slash)
+    const segments = pathname.split("/").filter(Boolean);
+    // Check if the first segment is "profile" and a second segment exists.
+    if (segments[0].toLowerCase() === "profile" && segments[1]) {
+      return segments[1];
+    }
+    return null;
+  } catch (error) {
+    console.error("Invalid URL provided:", error);
+    return null;
+  }
+}
 const page = async ({ params }: { params: { brawlID: string } }) => {
   // Debug log for environment variables
   //need stronger typing for the profileData being fetched
   //store type of profileData in types folder
-  const { brawlID } = params;
+  // const brawlIDQuery = router.query.brawlID;
+
+  // if (!brawlIDQuery || Array.isArray(brawlIDQuery)) {
+  //   // Handle the error appropriately: show an error message, return, or use a fallback.
+  //   throw new Error("Invalid brawlID: it must be a single string.");
+  // }
+
+  // const brawlID: string = brawlIDQuery;
+  // Retrieve all headers from the incoming request
+  //const { brawlID } = params;
+  const headersList = headers();
+  //const domain = (await headersList).get("host") || "";
+  const fullUrl = (await headersList).get("referer") || "";
+
+  console.log(fullUrl);
+  const brawlID = extractBrawlIDFromUrl(fullUrl) as string;
+  console.log(brawlID);
   let profileData = null;
 
   try {

@@ -43,7 +43,7 @@ export default async function middleware(req: NextRequest) {
     if(isPublicRoute && session?.userId){
         return NextResponse.redirect(new URL("/feed", req.nextUrl));
     }
-
+    
     
 
     return response;
