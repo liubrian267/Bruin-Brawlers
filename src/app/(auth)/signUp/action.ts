@@ -3,7 +3,7 @@ import z from 'zod';
 import { connectToDatabase } from '@/utils/database';
 import User from '@/models/User';
 import { redirect } from 'next/navigation';
-import { State } from '@/types/Users';
+import { SignUpState } from '@/types/Users';
 
 //validate Supercell ID before sign up
 const SUPERCELL_API_URL = "https://api.brawlstars.com/v1";
@@ -41,7 +41,7 @@ const signUpSchema = z.object({
 });
 
 
-export async function signUp(prevState: State, formData : FormData) {
+export async function signUp(prevState: SignUpState, formData : FormData) {
     await connectToDatabase();
     const result = signUpSchema.safeParse(Object.fromEntries(formData))
     //parsing error incorrect output

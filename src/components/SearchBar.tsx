@@ -156,7 +156,7 @@ const Search = () => {
             <div className="divide-y">
               {(searchResults as UserType[]).slice(0, 3).map((user) => (
                 <div
-                  key={user?._id}
+                  key={user?._id.toString()}
                   className="flex items-center justify-between p-4 hover:bg-gray-50 hover:cursor-pointer"
                   onClick={() => {
                     handleSearchResultClick(user.username);

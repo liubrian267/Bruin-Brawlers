@@ -30,7 +30,7 @@ function extractBrawlIDFromUrl(url: string): string | null {
     return null;
   }
 }
-const page = async ({ params }: { params: { brawlID: string } }) => {
+const page = async () => {
   // Debug log for environment variables
   //need stronger typing for the profileData being fetched
   //store type of profileData in types folder

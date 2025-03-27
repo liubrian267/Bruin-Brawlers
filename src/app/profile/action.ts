@@ -70,6 +70,7 @@ const battleEntry = {
 };
 
 user.battleSession.set(date, {
+  //@ts-expect-error: "Type 'Battle' is not assignable to type 'Game'",
   battles: [battleEntry], // Use plain object instead of Mongoose document
   totalBattles,
   totalWins,

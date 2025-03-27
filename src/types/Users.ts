@@ -45,4 +45,18 @@ export interface UserType {
     errors?: undefined;
   }
   
-  export type State = ErrorsState | ErrorMessageState | undefined;
+  export type LoginState = ErrorsState | ErrorMessageState | undefined;
+
+  interface SignUpErrorsState {
+    errors: {
+      email?: string[];
+      password?: string[];
+      BrawlID?: string[]; // Added BrawlID to match your form field
+    };
+  }
+  
+  interface SignUpErrorMessageState {
+    error: string; // Changed from 'unknown' to 'string' to match expected type
+  }
+  
+  export type SignUpState = SignUpErrorsState | SignUpErrorMessageState | undefined;

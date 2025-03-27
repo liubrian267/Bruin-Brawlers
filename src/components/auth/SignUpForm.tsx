@@ -44,7 +44,9 @@ export default function SignUpForm() {
             />
           </div>
           {state?.errors?.BrawlID && (
-            <p className="mt-2 text-red-500 dark:text-red-400">{state.errors.BrawlID}</p>
+            <p className="mt-2 text-red-500 dark:text-red-400">
+              {state.errors.BrawlID}
+            </p>
           )}
         </div>
         <div className="mb-4">
@@ -71,7 +73,9 @@ export default function SignUpForm() {
             />
           </div>
           {state?.errors?.email && (
-            <p className="mt-2 text-red-500 dark:text-red-400">{state.errors.email}</p>
+            <p className="mt-2 text-red-500 dark:text-red-400">
+              {state.errors.email}
+            </p>
           )}
         </div>
         <div className="mb-6">
@@ -98,7 +102,9 @@ export default function SignUpForm() {
             />
           </div>
           {state?.errors?.password && (
-            <p className="text-red-500 dark:text-red-400">{state.errors.password}</p>
+            <p className="text-red-500 dark:text-red-400">
+              {state.errors.password}
+            </p>
           )}
         </div>
         <button
@@ -111,7 +117,10 @@ export default function SignUpForm() {
       </form>
       <p className="mt-4 text-sm text-center text-gray-600 dark:text-gray-400">
         Already have an account?{" "}
-        <Link href="./login" className="text-ucla-blue hover:text-[#1e5c8c] dark:text-[#4A9EDE] dark:hover:text-[#6AB3E7] hover:underline">
+        <Link
+          href="./login"
+          className="text-ucla-blue hover:text-[#1e5c8c] dark:text-[#4A9EDE] dark:hover:text-[#6AB3E7] hover:underline"
+        >
           Login
         </Link>
       </p>
