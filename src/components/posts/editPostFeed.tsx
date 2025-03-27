@@ -2,14 +2,15 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-const EditPosts = ({ posts }: any) => {
+import { Post } from "@/types/posts";
+const EditPosts = ({ posts }: { posts: Post[] }) => {
   // console.log(posts);
   const [localPosts, setLocalPosts] = useState(posts);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editContent, setEditContent] = useState("");
   const [editImage, setEditImage] = useState<File | null>(null);
 
-  const handleEdit = (post: any) => {
+  const handleEdit = (post: Post) => {
     setEditContent(post.content);
     setEditingId(post._id);
     // Optionally, clear any previous image selection.
@@ -38,7 +39,7 @@ const EditPosts = ({ posts }: any) => {
 
       const data = await response.json();
       console.log("Post deleted:", data.message);
-      setLocalPosts((prevPosts: any[]) =>
+      setLocalPosts((prevPosts: Post[]) =>
         prevPosts.filter((post) => post._id !== postID)
       );
       window.location.reload();
@@ -66,7 +67,7 @@ const EditPosts = ({ posts }: any) => {
 
       const data = await response.json();
       console.log(data.message);
-      setLocalPosts((prevPosts: any[]) =>
+      setLocalPosts((prevPosts: Post[]) =>
         prevPosts.map((post) => (post._id === postID ? data.post : post))
       );
       window.location.reload();
@@ -82,7 +83,7 @@ const EditPosts = ({ posts }: any) => {
           No posts to display.
         </div>
       ) : (
-        localPosts.map((post: any) => (
+        localPosts.map((post: Post) => (
           <div key={post._id} className="bg-white rounded-lg shadow-md p-6">
             <div className="flex justify-between mb-4">
               <p className="text-sm text-gray-500">

@@ -90,7 +90,12 @@ const PlayerCard = ({
       </p>
       <div className="flex items-center justify-center gap-1.5 mt-1">
         <div className="w-4 h-4 flex items-center justify-center bg-gradient-to-br from-[#2774AE]/10 to-[#1e5c8c]/10 dark:from-[#2774AE]/20 dark:to-[#1e5c8c]/20 rounded p-0.5 group-hover:from-[#2774AE]/20 group-hover:to-[#1e5c8c]/20 dark:group-hover:from-[#2774AE]/30 dark:group-hover:to-[#1e5c8c]/30 transition-colors duration-300">
-          <Image src="/icons/level.png" width={12} height={12} alt="" />
+          <Image
+            src="/icons/level.png"
+            width={12}
+            height={12}
+            alt="level icon"
+          />
         </div>
         <span className="text-xs text-gray-600 dark:text-gray-400">
           Power {player.brawler?.power}

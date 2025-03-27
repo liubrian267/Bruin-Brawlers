@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Game } from "@/types/gameData";
 
 const brawlerSchema = new mongoose.Schema({
   id: { type: Number, required: true }, // Brawler ID (e.g., 16000079)
@@ -45,3 +46,8 @@ export const battleSchema = new mongoose.Schema({
     },
   },
 });
+
+export const Battle = mongoose.models.Battle || mongoose.model('Battle', battleSchema);
+
+// Extend the existing Game type with Mongoose document properties
+export interface GameDocument extends Game, mongoose.Document {}

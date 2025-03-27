@@ -1,4 +1,4 @@
-
+import { ObjectId } from 'mongodb';
 //to avoid aliasing with User model, we use appUser, essentially the same
 export interface appUser {
     id: string;
@@ -10,18 +10,25 @@ export interface appUser {
 
 //we have two states beacuse we don't want to store pfp which can contain lots of bytes in the global state of user
 export interface UserPayloadState {
-    _id: any;
+    _id: string | ObjectId;
     brawlID: string;
     name: string;
     email: string;
 }
 
-export interface User {
-    _id: string;
-    username: string;
-    profilePicture?: string;
-    BrawlID: string;
-  }
+export interface UserType { 
+  _id: string | ObjectId; 
+  username: string; 
+  profilePicture?: string | null; 
+  BrawlID: string;
+  socialMedia?: {
+    twitter: string;
+    instagram: string;
+    discord: string;
+  } | null;  // Allow null here;
+  friends: UserType[]; 
+}
+
 
   interface ErrorsState {
     errors: {

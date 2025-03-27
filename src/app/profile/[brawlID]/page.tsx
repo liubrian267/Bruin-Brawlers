@@ -34,8 +34,8 @@ const page = async ({ params }: { params: { brawlID: string } }) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     profileData = await response.json();
-  } catch (error: any) {
-    console.error("Failed to fetch profile data:", error.message);
+  } catch (error) {
+    console.error("Failed to fetch profile data:", error);
   }
 
   let brawlers = profileData?.brawlers;

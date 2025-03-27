@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowUpDown, TrendingUp, Clock, ThumbsUp } from "lucide-react";
 import Image from "next/image";
-import { User } from "@/types/Users";
+import { UserType } from "@/types/Types";
 
 interface Post {
   _id: string;
@@ -28,7 +28,7 @@ const SearchPage = () => {
   const [sortBy, setSortBy] = useState<
     "recent" | "old" | "mostLikes" | "leastLikes"
   >("recent");
-  const [results, setResults] = useState<Post[] | User[]>([]);
+  const [results, setResults] = useState<Post[] | UserType[]>([]);
 
   const fetchResults = async () => {
     if (!query) return;
@@ -189,7 +189,7 @@ const SearchPage = () => {
               ) : type === "friends" ? (
                 // User results
                 <div className="divide-y">
-                  {(results as User[]).map((user) => (
+                  {(results as UserType[]).map((user) => (
                     <div
                       key={user._id}
                       onClick={() => {

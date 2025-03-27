@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from '@/utils/database';
 import User from '@/models/User';
+import { Brawler, UserGameProfile } from '@/types/gameData';
 
 async function fetchPlayerFromAPI(player_id: string) {
   const response = await fetch(
@@ -35,9 +36,9 @@ export async function GET() {
           // Update user's trophy data in database
           user.trophies = playerData.trophies;
           user.brawlers = playerData.brawlers
-            .sort((a: any, b: any) => b.trophies - a.trophies)
+            .sort((a : UserGameProfile, b : UserGameProfile) => b.trophies - a.trophies)
             .slice(0, 3)
-            .map((brawler: any) => ({
+            .map((brawler: Brawler) => ({
               name: brawler.name,
               trophies: brawler.trophies
             }));

@@ -29,12 +29,14 @@ export default function Match({ game }: { game: Game }) {
           {/* Mode and Type */}
           <div className="flex items-center gap-2">
             <div className="p-1.5 bg-gradient-to-br from-[#2774AE]/10 to-[#1e5c8c]/10 dark:from-[#2774AE]/20 dark:to-[#1e5c8c]/20 rounded-lg group-hover:from-[#2774AE]/20 group-hover:to-[#1e5c8c]/20 dark:group-hover:from-[#2774AE]/30 dark:group-hover:to-[#1e5c8c]/30 transition-colors duration-300">
-              <Image
-                src={ModeImageMap[game.battle.mode]}
-                width={20}
-                height={20}
-                alt={game.battle.mode}
-              ></Image>
+              {ModeImageMap[game.battle.mode] && (
+                <Image
+                  src={ModeImageMap[game.battle.mode]}
+                  width={30}
+                  height={30}
+                  alt={game.battle.mode}
+                />
+              )}
             </div>
             <div>
               <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
@@ -81,7 +83,7 @@ export default function Match({ game }: { game: Game }) {
                 src="/icons/trophies.png"
                 width={20}
                 height={20}
-                alt=""
+                alt="trophy icon"
               ></Image>
             </div>
             <div>

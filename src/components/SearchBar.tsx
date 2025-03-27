@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Search as SearchIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { User } from "@/types/Users";
+import { UserType } from "@/types/Users";
 import { Post } from "@/types/posts";
 
 const Search = () => {
@@ -11,7 +11,7 @@ const Search = () => {
   const searchRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [searchFriends, setSearchFriends] = useState(true);
-  const [searchResults, setSearchResults] = useState<User[] | Post[]>([]);
+  const [searchResults, setSearchResults] = useState<UserType[] | Post[]>([]);
   const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
@@ -154,7 +154,7 @@ const Search = () => {
           {searchFriends ? (
             // User results preview
             <div className="divide-y">
-              {(searchResults as User[]).slice(0, 3).map((user) => (
+              {(searchResults as UserType[]).slice(0, 3).map((user) => (
                 <div
                   key={user?._id}
                   className="flex items-center justify-between p-4 hover:bg-gray-50 hover:cursor-pointer"

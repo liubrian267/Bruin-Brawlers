@@ -67,7 +67,7 @@ export default function MatchList({ battleSession }: MatchListProps) {
                         src="/icons/calendar.png"
                         width={20}
                         height={20}
-                        alt=""
+                        alt="calendar icon"
                       />
                     </div>
                     <div>
@@ -104,7 +104,7 @@ export default function MatchList({ battleSession }: MatchListProps) {
                             src="/icons/trophies.png"
                             width={20}
                             height={20}
-                            alt=""
+                            alt="trophy icon"
                           ></Image>
                           <span className="dark:text-gray-200">
                             Winrate: {battleSession[date].winRate.toFixed(2)}%

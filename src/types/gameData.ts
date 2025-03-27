@@ -1,4 +1,23 @@
-// Using PascalCase for interface names as per TypeScript conventions
+export interface UserGameProfile {
+  tag: string,
+  name: string
+  trophies: number,
+  highestTrophies: number,
+  club: {
+    tag?: string,
+    name?: string,
+    
+  },
+  "3vs3Victories" : number,
+    soloVictories: number,
+    duoVictories: number
+    bestRoboRumbleTime: number,
+    bestTimeAsBigBrawler: number,
+    brawlers: Brawler[]
+
+  
+    
+}
 export interface Brawler {
     id: number;
     name: string;

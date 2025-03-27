@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { connectToDatabase } from '@/utils/database';
 import User from '@/models/User';
 import { cookies } from 'next/headers';
+import { UserType } from '@/types/Users';
 
 export async function GET() {
   try {
@@ -21,12 +22,14 @@ export async function GET() {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
+    console.log('Filtered friends:', currentUser.friends);
     // Filter out the current user from friends list if present
-    const filteredFriends = currentUser.friends.filter((friend: any) => 
-      friend.BrawlID !== brawlID
-    );
-
+    const filteredFriends = (currentUser.friends as unknown as UserType[])
+    .filter(friend => friend.BrawlID !== brawlID);
+  
+    
     // Return the filtered friends array
+    
     return NextResponse.json(filteredFriends);
 
   } catch (error) {

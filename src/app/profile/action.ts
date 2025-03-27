@@ -1,6 +1,8 @@
 "use server";
 import { connectToDatabase } from "@/utils/database";
 import User from "@/models/User";
+// import { battleSchema } from "@/models/Battle";
+// import { Battle } from "@/models/Battle";
 import { Game } from "@/types/gameData";
 
 
@@ -60,15 +62,21 @@ export async function updateMatchHistory(brawlID: string, matches: Game[]) {
       const draws = game.battle.result === "draw" ? 1 : 0;
       const totalTrophyChange =  game.battle.trophyChange;
       
-      // Create a new session using Map.set
-      user.battleSession.set(date, {
-        battles: [game] as any,
-        totalBattles,
-        totalWins,
-        winRate,
-        draws,
-        totalTrophyChange,
-      });
+      // Instead of new Battle(game)
+const battleEntry = {
+  battleTime: game.battleTime,
+  event: game.event,
+  battle: game.battle
+};
+
+user.battleSession.set(date, {
+  battles: [battleEntry], // Use plain object instead of Mongoose document
+  totalBattles,
+  totalWins,
+  winRate,
+  draws,
+  totalTrophyChange,
+});
     }
   }
   

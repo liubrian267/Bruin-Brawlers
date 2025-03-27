@@ -3,23 +3,27 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { UserGameProfile } from "@/types/gameData";
 
+interface profileDataProps {
+  profileData: UserGameProfile;
+}
 // Create a client-only version of the component
-const ProfileDataClient = ({ profileData }: any) => {
+const ProfileDataClient = ({ profileData }: profileDataProps) => {
   const [showProfile, setShowProfile] = useState(false);
 
   // Add null checks and default values
-  const safeProfileData = {
-    trophies: profileData?.trophies ?? 0,
-    highestTrophies: profileData?.highestTrophies ?? 0,
-    club: profileData?.club ?? { name: "Not in a Club" },
-    brawlers: profileData?.brawlers ?? [],
-    "3vs3Victories": profileData?.["3vs3Victories"] ?? 0,
-    soloVictories: profileData?.soloVictories ?? 0,
-    duoVictories: profileData?.duoVictories ?? 0,
-    bestRoboRumbleTime: profileData?.bestRoboRumbleTime ?? "N/A",
-    bestTimeAsBigBrawler: profileData?.bestTimeAsBigBrawler ?? "N/A",
-  };
+  // const profileData = {
+  //   trophies: profileData?.trophies ?? 0,
+  //   highestTrophies: profileData?.highestTrophies ?? 0,
+  //   club: profileData?.club ?? { name: "Not in a Club" },
+  //   brawlers: profileData?.brawlers ?? [],
+  //   "3vs3Victories": profileData?.["3vs3Victories"] ?? 0,
+  //   soloVictories: profileData?.soloVictories ?? 0,
+  //   duoVictories: profileData?.duoVictories ?? 0,
+  //   bestRoboRumbleTime: profileData?.bestRoboRumbleTime ?? "N/A",
+  //   bestTimeAsBigBrawler: profileData?.bestTimeAsBigBrawler ?? "N/A",
+  // };
 
   const StatItem = ({
     label,
@@ -36,6 +40,8 @@ const ProfileDataClient = ({ profileData }: any) => {
           src={icon}
           alt={label}
           className="w-full h-full object-contain"
+          width={20}
+          height={20}
         />
       </div>
       <div className="flex-grow">
@@ -107,17 +113,17 @@ const ProfileDataClient = ({ profileData }: any) => {
               <div className="p-4 space-y-3">
                 <StatItem
                   label="Trophies"
-                  value={safeProfileData.trophies.toString()}
+                  value={profileData.trophies.toString()}
                   icon="/icons/trophies.png"
                 />
                 <StatItem
                   label="Highest Trophies"
-                  value={safeProfileData.highestTrophies.toString()}
+                  value={profileData.highestTrophies.toString()}
                   icon="/icons/highest-trophies.png"
                 />
                 <StatItem
                   label="Club"
-                  value={safeProfileData.club.name}
+                  value={profileData.club.name ?? "Not in a Club"}
                   icon="/icons/clubs.png"
                 />
               </div>
@@ -149,32 +155,32 @@ const ProfileDataClient = ({ profileData }: any) => {
               <div className="p-4 space-y-3">
                 <StatItem
                   label="Unlocked Brawlers"
-                  value={safeProfileData.brawlers.length.toString()}
+                  value={profileData.brawlers.length.toString()}
                   icon="/icons/unlocked-brawlers.png"
                 />
                 <StatItem
                   label="3v3 Victories"
-                  value={safeProfileData["3vs3Victories"].toString()}
+                  value={profileData["3vs3Victories"].toString()}
                   icon="/icons/3vs3-victories.png"
                 />
                 <StatItem
                   label="Solo Victories"
-                  value={safeProfileData.soloVictories.toString()}
+                  value={profileData.soloVictories.toString()}
                   icon="/icons/solo-victories.png"
                 />
                 <StatItem
                   label="Duo Victories"
-                  value={safeProfileData.duoVictories.toString()}
+                  value={profileData.duoVictories.toString()}
                   icon="/icons/duo-victories.png"
                 />
                 <StatItem
                   label="Robo Rumble"
-                  value={safeProfileData.bestRoboRumbleTime}
+                  value={profileData.bestRoboRumbleTime.toString()}
                   icon="/icons/robo-rumble.png"
                 />
                 <StatItem
                   label="Big Game"
-                  value={safeProfileData.bestTimeAsBigBrawler}
+                  value={profileData.bestTimeAsBigBrawler.toString()}
                   icon="/icons/big-game.png"
                 />
               </div>
