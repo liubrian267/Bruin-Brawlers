@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Make sure it covers full viewport height */
+  min-height: 100vh;
+  background:white;
+  background-attachment: fixed; /* optional: keeps the gradient fixed as you scroll */
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #000; /* or your var(--foreground-rgb) */
+}
