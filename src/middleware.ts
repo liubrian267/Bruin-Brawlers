@@ -46,5 +46,9 @@ export default async function middleware(req: NextRequest) {
     
     
 
-    return response;
+  const fullUrl = `${req.nextUrl.origin}${req.nextUrl.pathname}`;
+  response.headers.set("x-pathname", fullUrl);
+
+  return response;
+
 }
