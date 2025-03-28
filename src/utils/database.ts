@@ -16,8 +16,9 @@ export async function connectToDatabase() {
         };
 
         await mongoose.connect(MONGO_URI, options);
-        require('../models/User');
-        require('../models/Post');
+        await import("../models/User");
+        await import("../models/Post");
+        console.log("Registered models:", mongoose.models);
         console.log("Connected to MongoDB");
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
