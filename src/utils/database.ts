@@ -16,6 +16,8 @@ export async function connectToDatabase() {
         };
 
         await mongoose.connect(MONGO_URI, options);
+        require('../models/User');
+        require('../models/Post');
         console.log("Connected to MongoDB");
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
