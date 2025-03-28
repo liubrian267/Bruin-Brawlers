@@ -1,6 +1,7 @@
 import { connectToDatabase } from "@/utils/database";
 import User from "@/models/User";
 import { cookies } from "next/headers";
+import mongoose from "mongoose";
 export async function PUT(req: Request) {
   // console.log('hiß')
   await connectToDatabase();
@@ -23,13 +24,13 @@ export async function PUT(req: Request) {
         { status: 404 }
       );
     }
-    if (user?.friends.includes(friend._id)) {
+    if (user?.friends.some((friendId: mongoose.Types.ObjectId) => friendId.equals(friend._id))) {
       return new Response(
         JSON.stringify({ error: "User is already a friend" }),
         { status: 404 }
       );
     }
-    user?.friends.push(friend._id);
+    user?.friends.push(friend._id as unknown as mongoose.Schema.Types.ObjectId);
     await user?.save();
     return new Response(
       JSON.stringify({ message: "Friend added successfully" }),

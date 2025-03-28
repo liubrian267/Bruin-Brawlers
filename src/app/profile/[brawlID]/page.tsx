@@ -4,6 +4,7 @@ import MatchList from "@/components/dataDisplay/MatchList";
 import ProfileData from "@/components/dataDisplay/ProfileData";
 import { updateMatchHistory } from "../action";
 import { headers } from "next/headers";
+import { BattleSessionEntry } from "@/types/gameData";
 const API_KEY = process.env.BS_API_KEY as string;
 const URL = "https://api.brawlstars.com/v1";
 
@@ -30,7 +31,15 @@ function extractBrawlIDFromUrl(url: string): string | null {
     return null;
   }
 }
+
+// interface PageProps {
+//   params: {
+//     brawlID: string;
+//   };
+// }
 const page = async () => {
+  // const { brawlID } = params;
+  // console.log("Extracted brawlID:", brawlID);
   // Debug log for environment variables
   //need stronger typing for the profileData being fetched
   //store type of profileData in types folder
@@ -45,11 +54,16 @@ const page = async () => {
   // Retrieve all headers from the incoming request
   //const { brawlID } = params;
   const headersList = headers();
-  //const domain = (await headersList).get("host") || "";
-  const fullUrl = (await headersList).get("referer") || "";
+  // const fullUrl = (await headersList).get("referer") || "";
 
-  console.log(fullUrl);
-  const brawlID = extractBrawlIDFromUrl(fullUrl) as string;
+  // console.log(fullUrl, "url");
+  // const fullUrl = "http://localhost:3000/profile/29PUCGGV";
+  const activePath = (await headersList).get("x-pathname");
+  console.log(activePath, "active path");
+  const brawlID = activePath
+    ? (extractBrawlIDFromUrl(activePath) as string)
+    : "";
+  //const brawlID = "29PUCGGV";
   console.log(brawlID);
   let profileData = null;
 
@@ -92,18 +106,34 @@ const page = async () => {
     battlelog = await response.json();
     const rawBattleSession = await updateMatchHistory(brawlID, battlelog.items);
 
+    // Define the type for rawBattleSession entries
+    // type BattleSessionEntry = {
+    //   battles: {
+    //     _id?: string | null;
+    //     [key: string]: any;
+    //   }[];
+    //   totalBattles: number;
+    //   totalWins: number;
+    //   winRate: number;
+    // };
+    //console.log("Raw battle session:", rawBattleSession);
+    // Type assertion for rawBattleSession
     battleSession = rawBattleSession
       ? Object.fromEntries(
-          Array.from(rawBattleSession.entries()).map(([date, data]) => [
+          Array.from(
+            rawBattleSession.entries() as Iterable<[string, BattleSessionEntry]>
+          ).map(([date, data]) => [
             date,
             {
               battles: data.battles.map((battle) => ({
                 ...JSON.parse(JSON.stringify(battle)),
-                _id: battle._id ? battle._id.toString() : null,
               })),
               totalBattles: data.totalBattles || 0,
               totalWins: data.totalWins || 0,
               winRate: data.winRate || 0,
+              draws: data.draws || 0,
+              totalTrophyChange: data.totalTrophyChange || 0,
+              _id: data._id ? data._id.toString() : null,
             },
           ])
         )

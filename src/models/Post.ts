@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
-interface IPost extends Document {
+export interface IPost extends Document {
   author: mongoose.Types.ObjectId | { 
     BrawlID: string;
     profilePicture?: string;
