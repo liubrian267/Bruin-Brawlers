@@ -46,14 +46,9 @@ export default async function middleware(req: NextRequest) {
     
     
 
-    const requestHeaders = new Headers(req.headers);
   const fullUrl = `${req.nextUrl.origin}${req.nextUrl.pathname}`;
-  requestHeaders.set("x-pathname", fullUrl);
+  response.headers.set("x-pathname", fullUrl);
 
-  return NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  return response;
 
 }
