@@ -300,7 +300,8 @@ export default function FeedPage() {
                     >
                       <div className="flex items-start space-x-4 mb-6">
                         <div className="flex-shrink-0 transform transition-transform duration-300 group-hover:scale-105">
-                          {typeof post.author === "object" &&
+                          {post.author &&
+                          typeof post.author === "object" &&
                           post.author.profilePicture ? (
                             <div className="w-10 h-10 rounded-full relative overflow-hidden">
                               <Image
