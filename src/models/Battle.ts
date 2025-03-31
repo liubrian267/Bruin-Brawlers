@@ -32,8 +32,9 @@ export const battleSchema = new mongoose.Schema({
   battle: {
     mode: { type: String, required: true }, // Battle mode (e.g., "brawlBall")
     type: { type: String, required: true }, // Battle type (e.g., "ranked")
-    result: { type: String, required: true }, // Battle result (e.g., "victory")
-    duration: { type: Number, required: true }, // Duration of the battle in seconds
+    rank: { type: Number, required: false }, // Player rank (e.g., 7) for showdown modes
+    result: { type: String, required: false }, // Battle result (e.g., "victory")
+    duration: { type: Number, required: false }, // Duration of the battle in seconds
     trophyChange: {type: Number}, // Change in trophies after the battle)
     starPlayer: starPlayerSchema,
     teams: {

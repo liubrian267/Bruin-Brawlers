@@ -5,7 +5,7 @@ import { Brawler, UserGameProfile } from '@/types/gameData';
 
 async function fetchPlayerFromAPI(player_id: string) {
   const response = await fetch(
-    `https://api.brawlstars.com/v1/players/%23${player_id}/`,
+    `https://bsproxy.royaleapi.dev/v1/players/%23${player_id}/`,
     {
       headers: {
         Authorization: `Bearer ${process.env.BS_API_KEY}`,

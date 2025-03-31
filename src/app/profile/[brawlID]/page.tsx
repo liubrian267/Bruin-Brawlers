@@ -6,7 +6,8 @@ import { updateMatchHistory } from "../action";
 import { headers } from "next/headers";
 import { BattleSessionEntry } from "@/types/gameData";
 const API_KEY = process.env.BS_API_KEY as string;
-const URL = "https://api.brawlstars.com/v1";
+// const URL = "https://proxy.royaleapi.dev/v1";
+const URL = "https://bsproxy.royaleapi.dev/v1";
 
 interface brawler {
   id: number;
