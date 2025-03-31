@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 import { SignUpState } from '@/types/Users';
 
 //validate Supercell ID before sign up
-const SUPERCELL_API_URL = "https://api.brawlstars.com/v1";
+const SUPERCELL_API_URL = "https://bsproxy.royaleapi.dev/v1";
 const BS_API_KEY = process.env.BS_API_KEY;
 let userName = ""; 
 async function validateBrawlID(brawlID: string): Promise<boolean> {

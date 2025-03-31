@@ -44,7 +44,8 @@ export async function updateMatchHistory(brawlID: string, matches: Game[]) {
         console.log(`Adding game to battle session for date: ${date}`);
         battleData.battles.push(game);
         battleData.totalBattles = (battleData.totalBattles || 0) + 1;
-        battleData.totalWins = (battleData.totalWins || 0) + (game.battle.result === "victory" ? 1 : 0);
+        //((game.battle.result === "victory" ? 1 : 0) || game.battle.trophyChange > 0 ? 1 : 0)
+        battleData.totalWins = (battleData.totalWins || 0) + (game.battle.trophyChange > 0 ? 1 : 0);
         battleData.winRate = battleData.totalBattles
         ? (battleData.totalWins / battleData.totalBattles) * 100
         : 0;
