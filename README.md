@@ -3,7 +3,7 @@
 This is a web app for the UCLA Brawl Stars Community! Share and discuss Brawl Stars-related content, track in-depth game analytics, and connect with fellow Bruin Brawlers to strategize, compete, and grow together.
 ## Getting Started
 
-- Clone the repository : ```git clone https://github.com/SamuelLo1/Bruin-Brawlers.git```.
+- Clone the repository : ```https://github.com/liubrian267/Bruin-Brawlers.git```.
 - run ```npm instal``` to install dependencies
   
 #### Setting up environment variables
